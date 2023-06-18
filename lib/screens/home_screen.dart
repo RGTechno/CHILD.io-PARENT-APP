@@ -109,69 +109,72 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  children.isEmpty
-                      ? DummyChildrenList()
-                      : ChildrenList(children: children),
-                  GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text("Connect to your child device"),
-                          content: Wrap(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Enter the below code to your child's app in LINK TO PARENT dialog",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: textColor,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  alignment: Alignment.center,
+            body: RefreshIndicator(
+              onRefresh: init,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    children.isEmpty
+                        ? DummyChildrenList()
+                        : ChildrenList(children: children),
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text("Connect to your child device"),
+                            content: Wrap(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    user["userID"].toString(),
+                                    "Enter the below code to your child's app in LINK TO PARENT dialog",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 28,
-                                      color: Colors.red,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: textColor,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      user["userID"].toString(),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 28,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: secondaryColor,
+                          borderRadius: BorderRadius.circular(50),
                         ),
-                      );
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                      margin:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                      decoration: BoxDecoration(
-                        color: secondaryColor,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Text(
-                        "ADD CHILD",
-                        style: TextStyle(fontSize: 20, color: textColor),
+                        child: Text(
+                          "ADD CHILD",
+                          style: TextStyle(fontSize: 20, color: textColor),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
