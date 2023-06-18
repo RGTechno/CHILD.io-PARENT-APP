@@ -55,7 +55,7 @@ class ChildrenList extends StatelessWidget {
                     children: [
                       DottedBorder(
                         borderType: BorderType.Circle,
-                        padding: EdgeInsets.all(30),
+                        padding: EdgeInsets.all(50),
                         strokeWidth: 5,
                         color: accentColor,
                         borderPadding: EdgeInsets.all(20),
